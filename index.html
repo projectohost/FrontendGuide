@@ -29,7 +29,7 @@
           </p>
           <div class="ex-grid" id="exGrid"></div>
           <div class="actions">
-            <a class="btn" href="#contact">Залишити заявку</a>
+            <a class="btn" href="#share">Показати батькам</a>
             <a class="btn ghost" href="#layers">З чого складається сайт</a>
           </div>
         </section>
@@ -118,95 +118,23 @@
         </section>
       </div>
 
-      <!-- CONTACT -->
+      <!-- SHARE WITH PARENTS -->
       <div class="wrap">
-        <section
-          class="section split"
-          id="contact"
-          aria-labelledby="contact-title"
-        >
+        <section class="section split" id="share" aria-labelledby="share-title">
           <div>
-            <h2 class="display h2" id="contact-title">
-              Хочеш навчитись створювати сайти?
-            </h2>
+            <h2 class="display h2" id="share-title">Хочеш спробувати себе у світі веб-розробки ?</h2>
             <p class="lead">
-              Залиш контакти, і ми зв’яжемося з тобою та розкажемо про курс.
+              Поділися контактом з батьками, щоб менеджер міг розповісти про деталі навчання та графік. 
             </p>
           </div>
 
           <div class="panel">
-            <form id="contactForm" class="form" novalidate>
-              <div class="field-row">
-                <label class="field">
-                  <span>Ім’я</span>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    maxlength="40"
-                    autocomplete="given-name"
-                    autocapitalize="words"
-                    spellcheck="false"
-                    required
-                    aria-describedby="firstName-err"
-                  />
-                  <small class="field-error" id="firstName-err" hidden></small>
-                </label>
-                <label class="field">
-                  <span>Прізвище</span>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    maxlength="40"
-                    autocomplete="family-name"
-                    autocapitalize="words"
-                    spellcheck="false"
-                    required
-                    aria-describedby="lastName-err"
-                  />
-                  <small class="field-error" id="lastName-err" hidden></small>
-                </label>
-              </div>
-              <label class="field">
-                <span>Контактний номер</span>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  inputmode="tel"
-                  autocomplete="tel"
-                  placeholder="+380 50 123 45 67"
-                  maxlength="20"
-                  required
-                  aria-describedby="phone-err"
-                />
-                <small class="field-error" id="phone-err" hidden></small>
-              </label>
-              <label class="field">
-                <span
-                  >Що хочеш навчитись
-                  <em class="optional">(необов’язково)</em></span
-                >
-                <textarea
-                  id="interest"
-                  name="interest"
-                  rows="3"
-                  maxlength="300"
-                  placeholder="Наприклад: зробити свій сайт або гру"
-                  aria-describedby="interest-err"
-                ></textarea>
-                <small class="field-error" id="interest-err" hidden></small>
-              </label>
-              <button type="submit" class="btn" id="submitBtn">Надіслати</button>
-            </form>
-            <div
-              class="form-status"
-              id="formStatus"
-              role="status"
-              aria-live="polite"
-              hidden
-            ></div>
+            <div class="manager" id="managerCard"></div>
+            <button type="button" class="btn" id="shareBtn">
+              Поділитися з батьками
+            </button>
+            <div class="share-channels" id="shareChannels" hidden></div>
+            <p class="share-status" id="shareStatus" role="status" hidden></p>
           </div>
         </section>
       </div>
@@ -214,7 +142,7 @@
 
     <footer>
       <div class="wrap">
-        &#169; Якщо працює — не чіпай ;)
+        &#169; 2026 - Якщо працює — не чіпай ;)
       </div>
     </footer>
     <script src="./main.js"></script>

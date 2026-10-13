@@ -44,20 +44,19 @@ var CONFIG = {
   ],
 };
 
-var FORM = {
-  endpoint: "https://reportsapi-a7tx.onrender.com/ahead/sendMessage",
-  debug: true, // true = під повідомленням про помилку показувати технічні деталі (потім вимкніть)
-  timeoutMs: 60000, // безкоштовний Render може «прокидатися» майже хвилину
-  // Тіло POST-запиту (JSON). Якщо API чекає інші назви полів, міняйте тут.
-  buildBody: function (d) {
-    var lines = [
-      "Ім’я: " + d.firstName,
-      "Прізвище: " + d.lastName,
-      "Телефон: " + d.phone,
-    ];
-    if (d.interest) lines.push("Що хоче навчитись: " + d.interest);
-    return { message: lines.join("\n") };
+var SHARE = {
+  // Контакт менеджера: підставте реальні дані
+  manager: {
+    name: "Тетяна",
+    role: "менеджер",
+    phone: "+380674538635",
+    telegram: "https://t.me/NKLOGIKA",
   },
+  title: "Курс фронтенду",
+  intro: "Створення веб-додатків та їх публікація.",
+  pageUrl: "", // порожньо = адреса цієї сторінки
+  // Лічильник натискань: на сервер іде лише час натискання кнопки
+  endpoint: "https://reportsapi-a7tx.onrender.com/ahead/sendMessage",
 };
 /* ======================================= */
 
@@ -245,215 +244,137 @@ function buildThumb(ex) {
   });
 })();
 
-/* ---------- Contact form ---------- */
+/* ---------- Share with parents ---------- */
 (function () {
-  var form = document.getElementById("contactForm");
-  if (!form) return;
-  var btn = document.getElementById("submitBtn");
-  var statusEl = document.getElementById("formStatus");
-  var inputs = {
-    firstName: document.getElementById("firstName"),
-    lastName: document.getElementById("lastName"),
-    phone: document.getElementById("phone"),
-    interest: document.getElementById("interest"),
-  };
-  var BTN_TEXT = btn.textContent;
-  var sending = false;
+  var btn = document.getElementById("shareBtn");
+  if (!btn) return;
+  var M = SHARE.manager;
+  var card = document.getElementById("managerCard");
+  var channels = document.getElementById("shareChannels");
+  var statusEl = document.getElementById("shareStatus");
 
-  function fieldError(input, msg) {
-    var err = document.getElementById(input.id + "-err");
-    if (!err) return;
-    err.textContent = msg || "";
-    err.hidden = !msg;
-    if (msg) input.setAttribute("aria-invalid", "true");
-    else input.removeAttribute("aria-invalid");
+  function pageUrl() {
+    return SHARE.pageUrl || location.href.split("#")[0];
   }
 
-  function hideStatus() {
-    statusEl.hidden = true;
-    statusEl.textContent = "";
-    statusEl.className = "form-status";
+  function shareText() {
+    return (
+      SHARE.intro +
+      " Контакт менеджера: " +
+      M.name +
+      (M.role ? " (" + M.role + ")" : "") +
+      ", тел. " +
+      M.phone +
+      ", Telegram: " +
+      M.telegram
+    );
   }
 
-  // Повідомлення під формою: kind = "ok" | "error"
-  function showStatus(kind, title, text, code) {
-    statusEl.className = "form-status is-" + kind;
-    statusEl.textContent = "";
-    var t = document.createElement("strong");
-    t.textContent = title;
-    var m = document.createElement("span");
-    m.textContent = text;
-    statusEl.appendChild(t);
-    statusEl.appendChild(m);
-    if (code) {
-      var c = document.createElement("small");
-      c.textContent = code;
-      statusEl.appendChild(c);
-    }
+  function say(text) {
+    statusEl.textContent = text;
     statusEl.hidden = false;
-    statusEl.scrollIntoView({ block: "nearest" });
   }
 
-  function validName(v) {
-    return v.length >= 2 && /^[\p{L}][\p{L}'’ʼ -]*$/u.test(v);
+  // Картка менеджера на сторінці
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
   }
+  card.appendChild(el("p", "manager-name", M.name));
+  if (M.role) card.appendChild(el("p", "manager-role", M.role));
+  var links = el("div", "manager-links");
+  var tel = el("a", "", M.phone);
+  tel.href = "tel:" + M.phone.replace(/[^\d+]/g, "");
+  var tg = el("a", "", "Telegram: @" + M.telegram.split("/").pop());
+  tg.href = M.telegram;
+  tg.target = "_blank";
+  tg.rel = "noopener noreferrer";
+  links.appendChild(tel);
+  links.appendChild(tg);
+  card.appendChild(links);
 
-  // +380XXXXXXXXX, 0XXXXXXXXX або міжнародний номер із «+»
-  function normalizePhone(raw) {
-    raw = raw.trim();
-    var digits = raw.replace(/\D/g, "");
-    if (raw.charAt(0) === "+") {
-      return digits.length >= 10 && digits.length <= 15 ? "+" + digits : null;
-    }
-    if (/^0\d{9}$/.test(digits)) return "+38" + digits;
-    if (/^380\d{9}$/.test(digits)) return "+" + digits;
-    return null;
-  }
-
-  function validate() {
-    var d = {
-      firstName: inputs.firstName.value.trim(),
-      lastName: inputs.lastName.value.trim(),
-      phone: normalizePhone(inputs.phone.value),
-      interest: inputs.interest.value.trim(),
-    };
-    var first = null;
-    function check(ok, input, msg) {
-      fieldError(input, ok ? "" : msg);
-      if (!ok && !first) first = input;
-    }
-    check(
-      validName(d.firstName),
-      inputs.firstName,
-      "Введіть ім’я (мінімум 2 літери).",
-    );
-    check(
-      validName(d.lastName),
-      inputs.lastName,
-      "Введіть прізвище (мінімум 2 літери).",
-    );
-    check(
-      !!d.phone,
-      inputs.phone,
-      "Номер у форматі +380501234567 або 0501234567.",
-    );
-    if (first) {
-      first.focus();
-      return null;
-    }
-    return d;
-  }
-
-  // Текст помилки від сервера: поле message/error у JSON або короткий звичайний текст
-  function serverMessage(text) {
-    if (!text) return "";
+  // Лічильник: на сервер іде лише час натискання, без жодних даних про людину
+  function track() {
+    var when = new Date().toLocaleString("uk-UA", { timeZone: "Europe/Kyiv" });
     try {
-      var o = JSON.parse(text);
-      var m = o && (o.message || o.error || o.detail);
-      return typeof m === "string" ? m.slice(0, 300) : "";
-    } catch (e) {
-      var t = text.trim();
-      return t && t.charAt(0) !== "<" && t.length <= 200 ? t : "";
-    }
+      fetch(SHARE.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "Натиснули «Поділитися»: " + when }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
   }
 
-  // Технічні деталі для діагностики (показуються, лише якщо FORM.debug = true)
-  function details(status, serverMsg, raw, err) {
-    var parts = [];
-    if (status) parts.push("Код відповіді: " + status);
-    if (FORM.debug) {
-      if (raw && !serverMsg) parts.push("Відповідь сервера: " + raw.slice(0, 200));
-      if (err) parts.push("Технічна причина: " + err.name + " — " + err.message);
-    }
-    return parts.join("\n");
-  }
-
-  function fail(status, serverMsg, aborted, raw, err) {
-    var text;
-    if (serverMsg) {
-      text = serverMsg;
-    } else if (aborted) {
-      text =
-        "Сервер довго не відповідає (можливо, він ще прокидається). Спробуйте ще раз за хвилину.";
-    } else if (!status) {
-      text = "Немає звʼязку із сервером. Перевірте інтернет і спробуйте ще раз.";
-    } else if (status === 429 || status >= 500) {
-      text =
-        "Забагато спроб або сервер тимчасово недоступний. Зачекайте трохи й спробуйте ще раз.";
-    } else {
-      text = "Сервер не прийняв заявку. Перевірте дані й спробуйте ще раз.";
-    }
-    showStatus(
-      "error",
-      "Не вдалося надіслати заявку",
-      text,
-      details(status, serverMsg, raw, err),
-    );
-  }
-
-  function send(d) {
-    sending = true;
-    btn.disabled = true;
-    btn.textContent = "Надсилаємо…";
-    form.setAttribute("aria-busy", "true");
-
-    var ctrl = "AbortController" in window ? new AbortController() : null;
-    var timer = setTimeout(function () {
-      if (ctrl) ctrl.abort();
-    }, FORM.timeoutMs);
-
-    fetch(FORM.endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(FORM.buildBody(d)),
-      signal: ctrl ? ctrl.signal : undefined,
-    })
-      .then(function (res) {
-        return res.text().then(function (text) {
-          return { res: res, text: text };
-        });
-      })
-      .then(function (r) {
-        if (r.res.ok) {
-          form.reset();
-          showStatus(
-            "ok",
-            "Дякуємо, заявку надіслано!",
-            "Ми зв’яжемося з тобою найближчим часом.",
-          );
-        } else {
-          console.error("[form] HTTP", r.res.status, r.text);
-          fail(r.res.status, serverMessage(r.text), false, r.text);
-        }
-      })
-      .catch(function (err) {
-        console.error("[form] request failed", err);
-        fail(0, "", err && err.name === "AbortError", "", err);
-      })
-      .then(function () {
-        clearTimeout(timer);
-        sending = false;
-        btn.disabled = false;
-        btn.textContent = BTN_TEXT;
-        form.removeAttribute("aria-busy");
-      });
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (sending) return;
-    hideStatus();
-    var d = validate();
-    if (d) send(d);
+  // Запасні способи, якщо на пристрої немає системного меню «Поділитися»
+  var full = shareText() + "\n" + pageUrl();
+  var CH = [
+    {
+      name: "Telegram",
+      href:
+        "https://t.me/share/url?url=" +
+        encodeURIComponent(pageUrl()) +
+        "&text=" +
+        encodeURIComponent(shareText()),
+    },
+    {
+      name: "Viber",
+      href: "viber://forward?text=" + encodeURIComponent(full),
+    },
+    {
+      name: "WhatsApp",
+      href: "https://wa.me/?text=" + encodeURIComponent(full),
+    },
+  ];
+  CH.forEach(function (c) {
+    var a = el("a", "btn ghost", c.name);
+    a.href = c.href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.addEventListener("click", track);
+    channels.appendChild(a);
   });
 
-  // Прибираємо помилку поля, щойно людина почала його виправляти
-  Object.keys(inputs).forEach(function (k) {
-    inputs[k].addEventListener("input", function () {
-      fieldError(inputs[k], "");
+  function copyText(t) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(t).then(
+          function () {
+            return true;
+          },
+          function () {
+            return false;
+          },
+        );
+      }
+    } catch (e) {}
+    return Promise.resolve(false);
+  }
+
+  function fallback() {
+    channels.hidden = false;
+    copyText(full).then(function (ok) {
+      say(
+        ok
+          ? "Контакт скопійовано. Встав його в чат з батьками або обери месенджер."
+          : "Обери месенджер, щоб надіслати контакт батькам.",
+      );
     });
+  }
+
+  btn.addEventListener("click", function () {
+    track();
+    if (navigator.share) {
+      navigator
+        .share({ title: SHARE.title, text: shareText(), url: pageUrl() })
+        .catch(function (err) {
+          if (err && err.name === "AbortError") return; // людина закрила меню
+          fallback();
+        });
+    } else {
+      fallback();
+    }
   });
 })();
