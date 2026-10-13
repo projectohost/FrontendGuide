@@ -46,15 +46,17 @@ var CONFIG = {
 
 var FORM = {
   endpoint: "https://reportsapi-a7tx.onrender.com/ahead/sendMessage",
+  debug: true, // true = під повідомленням про помилку показувати технічні деталі (потім вимкніть)
   timeoutMs: 60000, // безкоштовний Render може «прокидатися» майже хвилину
   // Тіло POST-запиту (JSON). Якщо API чекає інші назви полів, міняйте тут.
   buildBody: function (d) {
-    return {
-      firstName: d.firstName,
-      lastName: d.lastName,
-      phone: d.phone,
-      message: d.interest,
-    };
+    var lines = [
+      "Ім’я: " + d.firstName,
+      "Прізвище: " + d.lastName,
+      "Телефон: " + d.phone,
+    ];
+    if (d.interest) lines.push("Що хоче навчитись: " + d.interest);
+    return { message: lines.join("\n") };
   },
 };
 /* ======================================= */
@@ -70,78 +72,6 @@ function esc(s) {
     }[c];
   });
 }
-
-/* ---------- Live code demo ---------- */
-(function () {
-  var COLORS = [
-    { name: "Червоний", hex: "#E5383B" },
-    { name: "Синій", hex: "#3A47F5" },
-    { name: "Зелений", hex: "#1FA971" },
-    { name: "Рожевий", hex: "#E0306B" },
-    { name: "Помаранчевий", hex: "#E67700" },
-  ];
-  var state = { name: "Олег", color: COLORS[0].hex, size: 36 };
-  var nameIn = document.getElementById("nameIn");
-  var sizeIn = document.getElementById("sizeIn");
-  var sizeOut = document.getElementById("sizeOut");
-  var pvH = document.getElementById("pvH");
-  var pvBtn = document.getElementById("pvBtn");
-  var pvMsg = document.getElementById("pvMsg");
-  var code = document.getElementById("code");
-  var sw = document.getElementById("swatches");
-
-  COLORS.forEach(function (c, i) {
-    var l = document.createElement("label");
-    l.className = "sw";
-    l.style.setProperty("--c", c.hex);
-    l.innerHTML =
-      '<input type="radio" name="color" value="' +
-      c.hex +
-      '" aria-label="' +
-      c.name +
-      '"' +
-      (i === 0 ? " checked" : "") +
-      '><span class="dot"></span>';
-    sw.appendChild(l);
-  });
-
-  function render() {
-    var shown = state.name.trim() || "[твоє імʼя]";
-    pvH.textContent = "Привіт, я " + shown + "!";
-    pvH.style.color = state.color;
-    pvH.style.fontSize = state.size + "px";
-    sizeOut.textContent = state.size;
-    code.innerHTML =
-      '<span class="t">&lt;h1</span> <span class="a">style</span>=<span class="s">"color: <mark class="hl">' +
-      state.color +
-      '</mark>; font-size: <mark class="hl">' +
-      state.size +
-      'px</mark>;"</span><span class="t">&gt;</span>' +
-      'Привіт, я <mark class="hl">' +
-      esc(shown) +
-      '</mark>!<span class="t">&lt;/h1&gt;</span>\n' +
-      '<span class="t">&lt;button</span> <span class="a">onclick</span>=<span class="s">"alert(\'Працює!\')"</span><span class="t">&gt;</span>Натисни<span class="t">&lt;/button&gt;</span>';
-  }
-
-  nameIn.addEventListener("input", function () {
-    state.name = nameIn.value;
-    render();
-  });
-  sizeIn.addEventListener("input", function () {
-    state.size = +sizeIn.value;
-    render();
-  });
-  sw.addEventListener("change", function (e) {
-    if (e.target && e.target.name === "color") {
-      state.color = e.target.value;
-      render();
-    }
-  });
-  pvBtn.addEventListener("click", function () {
-    pvMsg.hidden = false;
-  });
-  render();
-})();
 
 /* ---------- Layers: HTML / CSS / JS ---------- */
 (function () {
@@ -427,7 +357,18 @@ function buildThumb(ex) {
     }
   }
 
-  function fail(status, serverMsg, aborted) {
+  // Технічні деталі для діагностики (показуються, лише якщо FORM.debug = true)
+  function details(status, serverMsg, raw, err) {
+    var parts = [];
+    if (status) parts.push("Код відповіді: " + status);
+    if (FORM.debug) {
+      if (raw && !serverMsg) parts.push("Відповідь сервера: " + raw.slice(0, 200));
+      if (err) parts.push("Технічна причина: " + err.name + " — " + err.message);
+    }
+    return parts.join("\n");
+  }
+
+  function fail(status, serverMsg, aborted, raw, err) {
     var text;
     if (serverMsg) {
       text = serverMsg;
@@ -446,7 +387,7 @@ function buildThumb(ex) {
       "error",
       "Не вдалося надіслати заявку",
       text,
-      status ? "Код відповіді: " + status : "",
+      details(status, serverMsg, raw, err),
     );
   }
 
@@ -484,11 +425,13 @@ function buildThumb(ex) {
             "Ми зв’яжемося з тобою найближчим часом.",
           );
         } else {
-          fail(r.res.status, serverMessage(r.text), false);
+          console.error("[form] HTTP", r.res.status, r.text);
+          fail(r.res.status, serverMessage(r.text), false, r.text);
         }
       })
       .catch(function (err) {
-        fail(0, "", err && err.name === "AbortError");
+        console.error("[form] request failed", err);
+        fail(0, "", err && err.name === "AbortError", "", err);
       })
       .then(function () {
         clearTimeout(timer);
