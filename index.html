@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <title>Кожна кнопка на екрані — чиясь робота | Курс фронтенду</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <main>
+      <!-- HERO: live code demo -->
+      <div class="wrap">
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <h1 id="hero-title" class="display">
+              Кожна кнопка на екрані — чиясь робота.
+            </h1>
+            <p class="lead">
+              Її зробив фронтенд-розробник. Ти користуєшся такими кнопками сотні
+              разів на день. Спробуй створити свою: змінюй код у вікні демо, і
+              сторінка зміниться одразу.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#course">Що буде на курсі</a>
+              <a class="btn ghost" href="#examples">Приклади сайтів</a>
+            </div>
+          </div>
+
+          <div class="demo" aria-labelledby="demo-title">
+            <h2 class="demo-title" id="demo-title">Твій перший код</h2>
+            <div class="controls">
+              <label class="field">
+                <span>Твоє імʼя</span>
+                <input
+                  type="text"
+                  id="nameIn"
+                  maxlength="16"
+                  value="Олена"
+                  autocomplete="off"
+                  autocapitalize="words"
+                  spellcheck="false"
+                />
+              </label>
+              <fieldset class="field">
+                <legend>Колір заголовка</legend>
+                <div class="swatches" id="swatches"></div>
+              </fieldset>
+              <label class="field">
+                <span>Розмір заголовка: <b id="sizeOut">36</b> px</span>
+                <input type="range" id="sizeIn" min="22" max="44" value="36" />
+              </label>
+            </div>
+            <div>
+              <p class="pane-label">Так бачить користувач</p>
+              <div class="page">
+                <p class="pv-h" id="pvH"></p>
+                <button type="button" class="pv-btn" id="pvBtn">Натисни</button>
+                <p class="pv-msg" id="pvMsg" role="status" hidden>
+                  Сторінка каже: Я зробив це!
+                </p>
+              </div>
+            </div>
+            <div>
+              <p class="pane-label">
+                Так це виглядає в коді (жовте — те, що ти змінив)
+              </p>
+              <pre class="code"><code id="code"></code></pre>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- LAYERS -->
+      <div class="wrap">
+        <section class="section" id="layers" aria-labelledby="layers-title">
+          <h2 class="display h2" id="layers-title">
+            З чого складається кнопка «Лайк»
+          </h2>
+          <p class="lead">
+            Будь-який сайт тримається на трьох технологіях. Вмикай їх по одній і
+            дивись, що змінюється.
+          </p>
+          <div class="layers">
+            <div>
+              <div class="chips" role="group" aria-label="Шари сайту">
+                <button
+                  type="button"
+                  class="chip"
+                  aria-pressed="true"
+                  aria-disabled="true"
+                >
+                  HTML
+                </button>
+                <button
+                  type="button"
+                  class="chip"
+                  aria-pressed="false"
+                  id="chipCss"
+                >
+                  CSS
+                </button>
+                <button
+                  type="button"
+                  class="chip"
+                  aria-pressed="false"
+                  id="chipJs"
+                >
+                  JavaScript
+                </button>
+              </div>
+              <p id="layerNote" aria-live="polite"></p>
+            </div>
+            <div class="stage">
+              <button type="button" class="like" id="like">
+                Лайк <span id="cnt">128</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- EXAMPLES -->
+      <div class="wrap">
+        <section class="section" id="examples" aria-labelledby="ex-title">
+          <h2 class="display h2" id="ex-title">
+            Ось що створюють фронтенд-розробники
+          </h2>
+          <p class="lead">
+            Відкрий обидва сайти на телефоні. Усе, що ти там побачиш і чого
+            торкнешся, — це HTML, CSS і JavaScript.
+          </p>
+          <div class="ex-grid" id="exGrid"></div>
+        </section>
+      </div>
+
+      <!-- WHY -->
+      <div class="wrap">
+        <section class="section" id="why" aria-labelledby="why-title">
+          <h2 class="display h2" id="why-title">Чому саме фронтенд</h2>
+          <dl class="why">
+            <div>
+              <dt>Швидкий старт</dt>
+              <dd>
+                Перший сайт можна зробити за кілька занять, без складної
+                математики.
+              </dd>
+            </div>
+            <div>
+              <dt>Видимий результат</dt>
+              <dd>
+                Пишеш код і одразу бачиш, що вийшло. Помилки видно відразу, їх
+                легко виправляти.
+              </dd>
+            </div>
+            <div>
+              <dt>Можливості</dt>
+              <dd>
+                Просування власної справи за допомогою вебсайтів.
+              </dd>
+            </div>
+            <div>
+              <dt>Портфоліо ще зі школи</dt>
+              <dd>
+                До вступу чи першої роботи в тебе будуть реальні проєкти, які
+                можна показати.
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="wrap">
+        Курс фронтенду для 8–9 класів. Відкрий цю сторінку на телефоні й покажи
+        друзям.
+      </div>
+    </footer>
+    <script src="./main.js"></script>
+  </body>
+</html>
