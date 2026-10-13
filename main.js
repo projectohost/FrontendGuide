@@ -258,16 +258,14 @@ function buildThumb(ex) {
   }
 
   function shareText() {
-    return (
-      SHARE.intro +
-      " Контакт менеджера: " +
-      M.name +
-      (M.role ? " (" + M.role + ")" : "") +
-      ", тел. " +
-      M.phone +
-      ", Telegram: " +
-      M.telegram
-    );
+    return [
+      SHARE.intro,
+      "",
+      "Контакт менеджера:",
+      M.name + (M.role ? " (" + M.role + ")" : ""),
+      "Тел.: " + M.phone,
+      "\nTelegram: " + M.telegram,
+    ].join("\n");
   }
 
   function say(text) {
