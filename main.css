@@ -139,14 +139,9 @@ a {
   transform: translateY(1px);
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (student projects) ---------- */
 .hero {
-  display: grid;
-  gap: 32px;
   padding-block: clamp(28px, 6vw, 72px);
-}
-.hero > * {
-  min-width: 0;
 }
 .hero h1 {
   font-size: clamp(1.75rem, 6vw + 0.5rem, 3.1rem);
@@ -156,10 +151,23 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 28px;
+}
+
+/* ---------- Demo section layout ---------- */
+.split {
+  display: grid;
+  gap: 32px;
+}
+.split > * {
+  min-width: 0;
+}
+.split .h2 {
+  font-size: clamp(1.6rem, 5vw + 0.4rem, 2.75rem);
+  margin-bottom: 18px;
 }
 @media (min-width: 900px) {
-  .hero {
+  .split {
     grid-template-columns: 1fr 1.1fr;
     align-items: center;
     gap: 56px;
@@ -504,10 +512,21 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.thumb-wrap {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg);
+}
 .thumb {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
+}
+.thumb-wrap .thumb {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 .ex-body {
   padding: 18px;
@@ -571,45 +590,6 @@ a {
 }
 .why dd {
   color: var(--muted);
-}
-
-/* Course */
-.course {
-  background: var(--block);
-  color: #fff;
-  border-radius: 24px;
-  padding: clamp(22px, 5vw, 56px);
-  display: grid;
-  gap: 28px;
-}
-.course > * {
-  min-width: 0;
-}
-.course .lead {
-  color: rgba(255, 255, 255, 0.85);
-}
-.facts {
-  display: grid;
-  gap: 14px;
-}
-.facts div {
-  border-top: 2px solid rgba(255, 255, 255, 0.35);
-  padding-top: 12px;
-}
-.facts dt {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-.facts dd {
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-@media (min-width: 800px) {
-  .course {
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: 48px;
-  }
 }
 
 footer {

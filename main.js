@@ -1,36 +1,39 @@
 /* ====== НАЛАШТУВАННЯ: міняйте тут ====== */
 var CONFIG = {
-  signupUrl: "#", // посилання на запис (форма, Telegram, пошта)
-  facts: [
-    { k: "Тривалість", v: "≈ 3 місяці" },
-    { k: "Що створиш", v: "сайт-візитку, застосунок і власний проєкт" },
-    { k: "З чого почнеш", v: "з нуля, досвід не потрібен" },
-    { k: "Розклад і вартість", v: "уточни в організатора" },
-  ],
   examples: [
     {
-      url: "https://neal.fun",
-      domain: "neal.fun",
-      title: "Neal.fun",
-      desc: "Колекція інтерактивних мініігор і візуалізацій, які працюють просто в браузері.",
+      url: "https://cybertech-r7rn.onrender.com/index.html",
+      domain: "cybertech-r7rn.onrender.com",
+      title: "CyberTech Store",
+      desc: "Магазин ігрової периферії: клавіатури, миші, монітори, крісла та готові збірки ПК.",
       points: [
-        "Анімації й реакція на кожен рух пальця",
-        "Жодних установок: лише HTML, CSS і JavaScript",
+        "Фільтри за категоріями, сортування та кошик",
+        "Нічна тема, перемикач мови й чат-асистент",
+      ],
+      // Превʼю: спочатку локальний скриншот, потім сервіс скриншотів,
+      // і лише потім намальована заглушка нижче.
+      images: [
+        "img/cybertech.jpg",
+        "https://image.thum.io/get/width/900/crop/506/https://cybertech-r7rn.onrender.com/index.html",
       ],
       thumb:
-        '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="#FFF4D6"/><rect x="16" y="16" width="92" height="68" rx="10" fill="#FF8A5B"/><rect x="114" y="16" width="92" height="68" rx="10" fill="#4CC9A6"/><rect x="212" y="16" width="92" height="68" rx="10" fill="#6C7BFF"/><rect x="16" y="94" width="92" height="68" rx="10" fill="#FFD23F"/><rect x="114" y="94" width="92" height="68" rx="10" fill="#FF6FA5"/><rect x="212" y="94" width="92" height="68" rx="10" fill="#2D3166"/><circle cx="62" cy="50" r="14" fill="#fff" opacity=".85"/><circle cx="160" cy="50" r="14" fill="#fff" opacity=".85"/><circle cx="258" cy="50" r="14" fill="#fff" opacity=".85"/></svg>',
+        '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="#0B1020"/><rect width="320" height="22" fill="#141B34"/><rect x="12" y="8" width="44" height="6" rx="3" fill="#22D3EE"/><rect x="226" y="8" width="26" height="6" rx="3" fill="#475569"/><rect x="262" y="8" width="44" height="6" rx="3" fill="#475569"/><rect x="20" y="40" width="130" height="10" rx="4" fill="#F1F5F9"/><rect x="20" y="58" width="100" height="10" rx="4" fill="#F1F5F9"/><rect x="20" y="78" width="150" height="5" rx="2.5" fill="#64748B"/><rect x="20" y="92" width="60" height="18" rx="9" fill="#22D3EE"/><rect x="88" y="92" width="60" height="18" rx="9" fill="none" stroke="#E879F9" stroke-width="2"/><rect x="190" y="36" width="116" height="80" rx="10" fill="#1E2A52"/><circle cx="248" cy="76" r="22" fill="#E879F9" opacity=".75"/><rect x="20" y="128" width="64" height="40" rx="8" fill="#141B34"/><rect x="92" y="128" width="64" height="40" rx="8" fill="#141B34"/><rect x="164" y="128" width="64" height="40" rx="8" fill="#141B34"/><rect x="236" y="128" width="64" height="40" rx="8" fill="#141B34"/><rect x="30" y="138" width="44" height="14" rx="4" fill="#22D3EE" opacity=".6"/><rect x="102" y="138" width="44" height="14" rx="4" fill="#E879F9" opacity=".6"/><rect x="174" y="138" width="44" height="14" rx="4" fill="#22D3EE" opacity=".6"/><rect x="246" y="138" width="44" height="14" rx="4" fill="#E879F9" opacity=".6"/></svg>',
     },
     {
-      url: "https://bruno-simon.com",
-      domain: "bruno-simon.com",
-      title: "Bruno Simon — портфоліо",
-      desc: "Сайт-портфоліо, у якому ти їдеш машинкою по 3D-світу. Так виглядає програмування на максимумі.",
+      url: "https://foxtrot-shop.onrender.com/index.html",
+      domain: "foxtrot-shop.onrender.com",
+      title: "Foxtrot — магазин техніки",
+      desc: "Інтернет-магазин техніки на 60 товарів, зроблений за зразком великих українських магазинів.",
       points: [
-        "3D-графіка прямо в браузері",
-        "Керування клавіатурою або дотиком",
+        "Каталог із сортуванням, фільтрами й пошуком",
+        "Обране та кошик із підрахунком суми",
+      ],
+      images: [
+        "img/foxtrot.jpg",
+        "https://image.thum.io/get/width/900/crop/506/https://foxtrot-shop.onrender.com/index.html",
       ],
       thumb:
-        '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DD3FC"/><stop offset="1" stop-color="#FDE68A"/></linearGradient></defs><rect width="320" height="180" fill="url(#sky)"/><path d="M0 110 Q80 80 160 105 T320 95 V180 H0Z" fill="#86C98B"/><path d="M-10 160 Q110 110 330 140 L330 170 Q110 140 -10 190Z" fill="#4B5563"/><path d="M20 168 Q120 130 310 154" stroke="#FDE68A" stroke-width="3" stroke-dasharray="14 12" fill="none"/><rect x="138" y="118" width="46" height="20" rx="6" fill="#EF4444"/><rect x="150" y="108" width="24" height="14" rx="4" fill="#FCA5A5"/><circle cx="150" cy="140" r="7" fill="#111827"/><circle cx="174" cy="140" r="7" fill="#111827"/><rect x="40" y="70" width="10" height="34" fill="#92400E"/><circle cx="45" cy="62" r="18" fill="#22C55E"/><rect x="262" y="76" width="10" height="30" fill="#92400E"/><circle cx="267" cy="68" r="16" fill="#16A34A"/></svg>',
+        '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="#FFFFFF"/><rect width="320" height="26" fill="#F97316"/><rect x="12" y="9" width="48" height="8" rx="4" fill="#fff"/><rect x="80" y="7" width="130" height="12" rx="6" fill="#FFEDD5"/><rect x="236" y="9" width="30" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="274" y="9" width="34" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="12" y="36" width="296" height="70" rx="12" fill="#FFEDD5"/><rect x="26" y="50" width="120" height="10" rx="4" fill="#9A3412"/><rect x="26" y="68" width="90" height="10" rx="4" fill="#9A3412"/><rect x="26" y="86" width="56" height="12" rx="6" fill="#F97316"/><circle cx="254" cy="71" r="28" fill="#F97316"/><rect x="238" y="66" width="32" height="8" rx="3" fill="#fff"/><rect x="12" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="88" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="164" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="240" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><circle cx="46" cy="136" r="8" fill="#F97316"/><circle cx="122" cy="136" r="8" fill="#F97316"/><circle cx="198" cy="136" r="8" fill="#F97316"/><circle cx="274" cy="136" r="8" fill="#F97316"/><rect x="26" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="102" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="178" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="254" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/></svg>',
     },
   ],
 };
@@ -164,7 +167,33 @@ function esc(s) {
   render();
 })();
 
-/* ---------- Example previews ---------- */
+/* ---------- Student project previews ---------- */
+
+// Показує намальовану заглушку одразу, а потім підміняє її на справжній
+// скриншот, як тільки котрась із адрес у ex.images успішно завантажиться.
+function buildThumb(ex) {
+  var wrap = document.createElement("span");
+  wrap.className = "thumb-wrap";
+  wrap.innerHTML = ex.thumb;
+  var srcs = ex.images || [];
+  (function tryNext(i) {
+    if (i >= srcs.length) return;
+    var img = new Image();
+    img.className = "thumb";
+    img.alt = "Скриншот сайту " + ex.title;
+    img.decoding = "async";
+    img.onload = function () {
+      wrap.innerHTML = "";
+      wrap.appendChild(img);
+    };
+    img.onerror = function () {
+      tryNext(i + 1);
+    };
+    img.src = srcs[i];
+  })(0);
+  return wrap;
+}
+
 (function () {
   var grid = document.getElementById("exGrid");
   CONFIG.examples.forEach(function (ex) {
@@ -175,13 +204,12 @@ function esc(s) {
     a.rel = "noopener noreferrer";
     a.setAttribute(
       "aria-label",
-      "Відкрити сайт " + ex.domain + " в новій вкладці",
+      "Відкрити проєкт " + ex.title + " в новій вкладці",
     );
     a.innerHTML =
       '<div class="browser-bar"><i></i><i></i><i></i><span>' +
       esc(ex.domain) +
       "</span></div>" +
-      ex.thumb +
       '<div class="ex-body"><h3>' +
       esc(ex.title) +
       "</h3><p>" +
@@ -193,17 +221,7 @@ function esc(s) {
         })
         .join("") +
       '</ul><span class="ex-cta">Відкрити сайт</span></div>';
+    a.insertBefore(buildThumb(ex), a.querySelector(".ex-body"));
     grid.appendChild(a);
-  });
-})();
-
-/* ---------- Course block ---------- */
-(function () {
-  document.getElementById("signup").href = CONFIG.signupUrl;
-  var f = document.getElementById("facts");
-  CONFIG.facts.forEach(function (x) {
-    var d = document.createElement("div");
-    d.innerHTML = "<dt>" + esc(x.k) + "</dt><dd>" + esc(x.v) + "</dd>";
-    f.appendChild(d);
   });
 })();

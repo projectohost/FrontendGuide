@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="color-scheme" content="light dark" />
-    <title>Кожна кнопка на екрані — чиясь робота | Курс фронтенду</title>
+    <title>Курс фронтенду для 8–9 класів | Проєкти наших учнів</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,22 +18,34 @@
   </head>
   <body>
     <main>
-      <!-- HERO: live code demo -->
+      <!-- HERO: student projects -->
       <div class="wrap">
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero" id="examples" aria-labelledby="hero-title">
+          <h1 id="hero-title" class="display">Це створили наші учні</h1>
+          <p class="lead">
+            Два інтернет-магазини з каталогом, фільтрами та кошиком. Відкрий їх
+            на телефоні й подивись, як вони працюють.
+          </p>
+          <div class="ex-grid" id="exGrid"></div>
+          <div class="actions">
+            <a class="btn" href="#demo">Спробувати самому</a>
+            <a class="btn ghost" href="#layers">З чого складається сайт</a>
+          </div>
+        </section>
+      </div>
+
+      <!-- DEMO: live code -->
+      <div class="wrap">
+        <section class="section split" id="demo" aria-labelledby="demo-heading">
           <div>
-            <h1 id="hero-title" class="display">
+            <h2 class="display h2" id="demo-heading">
               Кожна кнопка на екрані — чиясь робота.
-            </h1>
+            </h2>
             <p class="lead">
               Її зробив фронтенд-розробник. Ти користуєшся такими кнопками сотні
               разів на день. Спробуй створити свою: змінюй код у вікні демо, і
               сторінка зміниться одразу.
             </p>
-            <div class="actions">
-              <a class="btn" href="#course">Що буде на курсі</a>
-              <a class="btn ghost" href="#examples">Приклади сайтів</a>
-            </div>
           </div>
 
           <div class="demo" aria-labelledby="demo-title">
@@ -129,20 +141,6 @@
         </section>
       </div>
 
-      <!-- EXAMPLES -->
-      <div class="wrap">
-        <section class="section" id="examples" aria-labelledby="ex-title">
-          <h2 class="display h2" id="ex-title">
-            Ось що створюють фронтенд-розробники
-          </h2>
-          <p class="lead">
-            Відкрий обидва сайти на телефоні. Усе, що ти там побачиш і чого
-            торкнешся, — це HTML, CSS і JavaScript.
-          </p>
-          <div class="ex-grid" id="exGrid"></div>
-        </section>
-      </div>
-
       <!-- WHY -->
       <div class="wrap">
         <section class="section" id="why" aria-labelledby="why-title">
@@ -151,8 +149,7 @@
             <div>
               <dt>Швидкий старт</dt>
               <dd>
-                Перший сайт можна зробити за кілька занять, без складної
-                математики.
+                HTML & CSS прості для засвоєння + є багато інструментів для спрощення роботи.
               </dd>
             </div>
             <div>
@@ -164,9 +161,7 @@
             </div>
             <div>
               <dt>Можливості</dt>
-              <dd>
-                Просування власної справи за допомогою вебсайтів.
-              </dd>
+              <dd>Просування власної справи за допомогою вебсайтів.</dd>
             </div>
             <div>
               <dt>Портфоліо ще зі школи</dt>
@@ -178,7 +173,6 @@
           </dl>
         </section>
       </div>
-
     </main>
 
     <footer>
