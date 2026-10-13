@@ -173,12 +173,104 @@
           </dl>
         </section>
       </div>
+
+      <!-- CONTACT -->
+      <div class="wrap">
+        <section
+          class="section split"
+          id="contact"
+          aria-labelledby="contact-title"
+        >
+          <div>
+            <h2 class="display h2" id="contact-title">
+              Хочеш навчитись створювати сайти?
+            </h2>
+            <p class="lead">
+              Залиш контакти, і ми зв’яжемося з тобою та розкажемо про курс.
+            </p>
+          </div>
+
+          <div class="panel">
+            <form id="contactForm" class="form" novalidate>
+              <div class="field-row">
+                <label class="field">
+                  <span>Ім’я</span>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    maxlength="40"
+                    autocomplete="given-name"
+                    autocapitalize="words"
+                    spellcheck="false"
+                    required
+                    aria-describedby="firstName-err"
+                  />
+                  <small class="field-error" id="firstName-err" hidden></small>
+                </label>
+                <label class="field">
+                  <span>Прізвище</span>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    maxlength="40"
+                    autocomplete="family-name"
+                    autocapitalize="words"
+                    spellcheck="false"
+                    required
+                    aria-describedby="lastName-err"
+                  />
+                  <small class="field-error" id="lastName-err" hidden></small>
+                </label>
+              </div>
+              <label class="field">
+                <span>Контактний номер</span>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="+380 50 123 45 67"
+                  maxlength="20"
+                  required
+                  aria-describedby="phone-err"
+                />
+                <small class="field-error" id="phone-err" hidden></small>
+              </label>
+              <label class="field">
+                <span
+                  >Що хочеш навчитись
+                  <em class="optional">(необов’язково)</em></span
+                >
+                <textarea
+                  id="interest"
+                  name="interest"
+                  rows="3"
+                  maxlength="300"
+                  placeholder="Наприклад: зробити свій сайт або гру"
+                  aria-describedby="interest-err"
+                ></textarea>
+                <small class="field-error" id="interest-err" hidden></small>
+              </label>
+              <button type="submit" class="btn" id="submitBtn">Надіслати</button>
+            </form>
+            <div
+              class="form-status"
+              id="formStatus"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer>
       <div class="wrap">
-        Курс фронтенду для 8–9 класів. Відкрий цю сторінку на телефоні й покажи
-        друзям.
+        	&#169; Made by programming mentor Serhii
       </div>
     </footer>
     <script src="./main.js"></script>

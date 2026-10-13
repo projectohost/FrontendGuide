@@ -174,7 +174,8 @@ a {
   }
 }
 
-.demo {
+.demo,
+.panel {
   background: var(--surface);
   border: 2px solid var(--edge);
   border-radius: 20px;
@@ -184,7 +185,8 @@ a {
   gap: 16px;
 }
 @media (min-width: 600px) {
-  .demo {
+  .demo,
+  .panel {
     box-shadow: 7px 7px 0 var(--edge);
   }
 }
@@ -623,4 +625,124 @@ footer {
   .thumb-video {
     transition: none;
   }
+}
+
+/* ---------- Contact form ---------- */
+:root {
+  --danger: #c5221f;
+  --ok: #16794c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --danger: #ff8a80;
+    --ok: #6ee7a8;
+  }
+}
+:root[data-theme="dark"] {
+  --danger: #ff8a80;
+  --ok: #6ee7a8;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+.field-row {
+  display: grid;
+  gap: 14px;
+}
+.field-row > * {
+  min-width: 0;
+}
+@media (min-width: 480px) {
+  .field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.field input[type="tel"],
+.field textarea {
+  width: 100%;
+  padding: 0 14px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    500 16px/1 Onest,
+    system-ui,
+    sans-serif;
+}
+.field input[type="tel"] {
+  height: 48px;
+}
+.field textarea {
+  padding: 12px 14px;
+  min-height: 96px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.field input[type="tel"]:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--accent);
+  outline-offset: 1px;
+}
+.field [aria-invalid="true"] {
+  border-color: var(--danger);
+}
+.optional {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted);
+}
+.field-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.field-error[hidden] {
+  display: none;
+}
+.form .btn {
+  width: 100%;
+}
+.btn[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+  transform: none;
+}
+
+.form-status {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.form-status[hidden] {
+  display: none;
+}
+.form-status strong {
+  font-weight: 700;
+}
+.form-status small {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.form-status.is-error {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+}
+.form-status.is-error strong {
+  color: var(--danger);
+}
+.form-status.is-ok {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 12%, var(--surface));
+}
+.form-status.is-ok strong {
+  color: var(--ok);
 }
