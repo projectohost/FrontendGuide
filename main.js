@@ -66,7 +66,7 @@ function esc(s) {
     { name: "Рожевий", hex: "#E0306B" },
     { name: "Помаранчевий", hex: "#E67700" },
   ];
-  var state = { name: "Олена", color: COLORS[0].hex, size: 36 };
+  var state = { name: "Олег", color: COLORS[0].hex, size: 36 };
   var nameIn = document.getElementById("nameIn");
   var sizeIn = document.getElementById("sizeIn");
   var sizeOut = document.getElementById("sizeOut");
@@ -106,7 +106,7 @@ function esc(s) {
       'Привіт, я <mark class="hl">' +
       esc(shown) +
       '</mark>!<span class="t">&lt;/h1&gt;</span>\n' +
-      '<span class="t">&lt;button</span> <span class="a">onclick</span>=<span class="s">"alert(\'Я зробив це!\')"</span><span class="t">&gt;</span>Натисни<span class="t">&lt;/button&gt;</span>';
+      '<span class="t">&lt;button</span> <span class="a">onclick</span>=<span class="s">"alert(\'Працює!\')"</span><span class="t">&gt;</span>Натисни<span class="t">&lt;/button&gt;</span>';
   }
 
   nameIn.addEventListener("input", function () {
