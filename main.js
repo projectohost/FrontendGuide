@@ -375,7 +375,7 @@ function buildThumb(ex) {
   }
 
   // Запасні способи, якщо на пристрої немає системного меню «Поділитися»
-  var full = shareText() + "\n" + pageUrl();
+  var full = shareText() + "\n";
   var CH = [
     {
       name: "Telegram",
