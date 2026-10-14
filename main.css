@@ -398,8 +398,10 @@ a {
   opacity: 1;
 }
 .ex-body {
+  flex: 1;
   padding: 18px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .ex-body h3 {
@@ -426,7 +428,9 @@ a {
   background: var(--accent);
 }
 .ex-cta {
-  margin-top: 6px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 6px;
   font-weight: 700;
   color: var(--accent);
 }
@@ -561,7 +565,7 @@ footer {
   font-weight: 500;
 }
 .contact-text strong {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   overflow-wrap: anywhere;
 }
 .contact-act {
