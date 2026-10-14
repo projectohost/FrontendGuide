@@ -41,6 +41,25 @@ var CONFIG = {
       thumb:
         '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="#FFFFFF"/><rect width="320" height="26" fill="#F97316"/><rect x="12" y="9" width="48" height="8" rx="4" fill="#fff"/><rect x="80" y="7" width="130" height="12" rx="6" fill="#FFEDD5"/><rect x="236" y="9" width="30" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="274" y="9" width="34" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="12" y="36" width="296" height="70" rx="12" fill="#FFEDD5"/><rect x="26" y="50" width="120" height="10" rx="4" fill="#9A3412"/><rect x="26" y="68" width="90" height="10" rx="4" fill="#9A3412"/><rect x="26" y="86" width="56" height="12" rx="6" fill="#F97316"/><circle cx="254" cy="71" r="28" fill="#F97316"/><rect x="238" y="66" width="32" height="8" rx="3" fill="#fff"/><rect x="12" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="88" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="164" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><rect x="240" y="118" width="68" height="50" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/><circle cx="46" cy="136" r="8" fill="#F97316"/><circle cx="122" cy="136" r="8" fill="#F97316"/><circle cx="198" cy="136" r="8" fill="#F97316"/><circle cx="274" cy="136" r="8" fill="#F97316"/><rect x="26" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="102" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="178" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/><rect x="254" y="152" width="40" height="5" rx="2.5" fill="#94A3B8"/></svg>',
     },
+    {
+      // Файл best.html лежить поруч з index.html, тому адреса відносна
+      url: "best.html",
+      domain: "best.html",
+      title: "Best",
+      desc: "Ще один проєкт. Відкрий і подивись, як він працює.",
+      points: [
+        "Окрема сторінка, що відкривається прямо з цього сайту",
+        "Створено з особливим дизайном)",
+      ],
+      video: {
+        mp4: "video/best.mp4",
+        webm: "video/best.webm",
+        start: 0,
+        duration: 20,
+      },
+      thumb:
+        '<svg class="thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="#EEF0FF"/><rect width="320" height="26" fill="#3A47F5"/><rect x="12" y="9" width="40" height="8" rx="4" fill="#fff"/><rect x="236" y="9" width="30" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="274" y="9" width="34" height="8" rx="4" fill="#fff" opacity=".8"/><rect x="20" y="44" width="150" height="12" rx="5" fill="#14163A"/><rect x="20" y="64" width="110" height="12" rx="5" fill="#14163A"/><rect x="20" y="88" width="160" height="6" rx="3" fill="#8087B8"/><rect x="20" y="100" width="130" height="6" rx="3" fill="#8087B8"/><rect x="20" y="120" width="64" height="20" rx="10" fill="#FF5C8A"/><rect x="200" y="42" width="108" height="100" rx="12" fill="#3A47F5"/><circle cx="254" cy="84" r="24" fill="#FFE45C"/><rect x="20" y="152" width="288" height="10" rx="5" fill="#D6DAF3"/></svg>',
+    },
   ],
 };
 

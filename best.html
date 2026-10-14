@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGLYSHOP!!! BEST WEBSITE EVER!!!</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+        cursor: crosshair;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: lime;
+        color: red;
+        font-family: "Comic Sans MS", cursive;
+        font-size: 19px;
+        overflow-x: hidden;
+      }
+
+      .top-banner {
+        background: red;
+        color: yellow;
+        font-size: 27px;
+        font-weight: bold;
+        padding: 15px;
+        border: 8px dashed blue;
+      }
+
+      header {
+        background: purple;
+        text-align: center;
+        padding: 20px;
+        border: 10px ridge orange;
+        transform: rotate(-1deg);
+      }
+
+      .logo {
+        color: yellow;
+        font-size: clamp(35px, 8vw, 75px);
+        text-shadow:
+          5px 5px blue,
+          -5px -5px red;
+        animation: wobble 0.4s infinite alternate;
+      }
+
+      .subtitle {
+        background: cyan;
+        color: magenta;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(3deg);
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 25px;
+      }
+
+      nav a {
+        color: lime;
+        background: red;
+        padding: 15px;
+        border: 5px dotted yellow;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      nav a:hover {
+        background: yellow;
+        color: blue;
+        font-size: 30px;
+        transform: rotate(15deg);
+      }
+
+      .hero {
+        background: repeating-linear-gradient(
+          45deg,
+          hotpink,
+          hotpink 20px,
+          yellow 20px,
+          yellow 40px
+        );
+        text-align: center;
+        padding: 50px 15px;
+        border: 12px groove blue;
+      }
+
+      .hero h2 {
+        color: blue;
+        font-size: clamp(32px, 7vw, 65px);
+        text-shadow: 4px 4px red;
+      }
+
+      .rotating {
+        font-size: 30px;
+        color: purple;
+        font-weight: bold;
+        animation: spin 5s linear infinite;
+      }
+
+      button {
+        background: blue;
+        color: yellow;
+        border: 7px outset red;
+        padding: 15px;
+        margin: 10px;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 18px;
+        box-shadow: 8px 8px 0 black;
+        transition: all 0.1s;
+      }
+
+      button:hover {
+        background: lime;
+        color: red;
+        transform: rotate(-8deg) scale(1.15);
+      }
+
+      button:active {
+        transform: scale(0.7);
+      }
+
+      .counter {
+        background: black;
+        color: lime;
+        margin: 30px auto 0;
+        padding: 15px;
+        max-width: 350px;
+        border: 6px dotted magenta;
+      }
+
+      #products {
+        padding: 40px 15px;
+        background: orange;
+      }
+
+      .products-title {
+        text-align: center;
+        color: blue;
+        background: yellow;
+        padding: 20px;
+        border: 8px dashed red;
+        transform: rotate(1deg);
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 30px;
+        margin-top: 35px;
+      }
+
+      .product {
+        min-width: 0;
+        background: cyan;
+        color: red;
+        padding: 15px;
+        text-align: center;
+        border: 10px ridge purple;
+        box-shadow: 15px 15px 0 pink;
+        transform: rotate(-2deg);
+      }
+
+      .product:nth-child(2) {
+        transform: rotate(4deg) translateY(25px);
+        background: pink;
+      }
+
+      .product:nth-child(3) {
+        transform: rotate(-5deg);
+        background: yellow;
+      }
+
+      .product-image {
+        font-size: 80px;
+        background: magenta;
+        border: 5px dotted green;
+        padding: 20px;
+      }
+
+      .product h3 {
+        font-size: 28px;
+        text-decoration: underline overline;
+      }
+
+      .price {
+        color: blue;
+        background: lime;
+        font-size: 27px;
+        font-weight: bold;
+      }
+
+      #about {
+        background: darkblue;
+        color: yellow;
+        padding: 50px 20px;
+        text-align: right;
+        border: 15px ridge red;
+      }
+
+      #contact {
+        background: pink;
+        color: green;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      input,
+      textarea {
+        display: block;
+        width: min(90%, 500px);
+        margin: 15px auto;
+        padding: 15px;
+        background: yellow;
+        color: red;
+        border: 7px dashed purple;
+        font-family: inherit;
+        font-size: 18px;
+      }
+
+      textarea {
+        min-height: 130px;
+      }
+
+      footer {
+        background: black;
+        color: lime;
+        padding: 30px;
+        text-align: center;
+        border-top: 15px solid red;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        top: 25%;
+        left: 10%;
+        width: 80%;
+        background: yellow;
+        color: red;
+        border: 12px ridge purple;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 0 0 9999px rgb(0 0 0 / 50%);
+        animation: wobble 0.3s infinite alternate;
+      }
+
+      .popup.show {
+        display: block;
+      }
+
+      #closePopup {
+        float: right;
+        margin: 0;
+        padding: 5px 12px;
+      }
+
+      @keyframes wobble {
+        from {
+          transform: rotate(-2deg);
+        }
+        to {
+          transform: rotate(2deg);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* IT GETS EVEN WORSE ON SMALL SCREENS */
+
+      @media (max-width: 700px) {
+        .products {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          flex-direction: column;
+        }
+
+        .product,
+        .product:nth-child(2),
+        .product:nth-child(3) {
+          transform: rotate(1deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <marquee class="top-banner">
+      🎉 ВІТАЄМО НА НАЙДИВНІШОМУ САЙТІ!!! 🎉 ТУТ УСЕ ЯСКРАВЕ, НЕЗРУЧНЕ І ДУЖЕ
+      ЦІКАВЕ!!!
+    </marquee>
+
+    <header>
+      <h1 class="logo">🌈 ДИВО-МАРКЕТ 🌈</h1>
+      <p class="subtitle">МАГАЗИН РЕЧЕЙ, ЯКІ ТОБІ МОЖЛИВО НЕ ПОТРІБНІ!</p>
+
+      <nav>
+        <a href="#home">ГОЛОВНА</a>
+        <a href="#products">ТОВАРИ</a>
+        <a href="#about">ПРО НАС</a>
+        <a href="#contact">КОНТАКТИ</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <h2>ПРИВІТ, ДОРОГИЙ ВІДВІДУВАЧУ!!!</h2>
+
+        <p class="rotating">НАЙКРАЩИЙ НАЙГІРШИЙ МАГАЗИН У ВСЕСВІТІ!</p>
+
+        <p>
+          У нас є дивні товари, незвичайні ціни та дизайн, який важко забути!
+        </p>
+
+        <button id="buyNow">КУПИТИ ВСЕ НЕГАЙНО!!!</button>
+        <button id="changeBg">ЗМІНИТИ ВСІ КОЛЬОРИ</button>
+
+        <div class="counter">
+          КІЛЬКІСТЬ ВІДВІДУВАЧІВ:
+          <span id="visitorCount">999999999</span>
+        </div>
+      </section>
+
+      <section id="products">
+        <h2 class="products-title">НАШІ НЕЙМОВІРНІ ТА ДУЖЕ ДИВНІ ТОВАРИ</h2>
+
+        <div class="products">
+          <div class="product">
+            <div class="product-image">🧦</div>
+            <h3>Невидимі шкарпетки</h3>
+            <p>Їх майже неможливо побачити!</p>
+            <p class="price">999,99 грн</p>
+            <button class="addCart">ДОДАТИ ДО КОШИКА</button>
+          </div>
+
+          <div class="product">
+            <div class="product-image">🪨</div>
+            <h3>Преміальний камінь</h3>
+            <p>Звичайний камінь, але дуже важливий.</p>
+            <p class="price">499,50 грн</p>
+            <button class="addCart">ДОДАТИ ДО КОШИКА</button>
+          </div>
+
+          <div class="product">
+            <div class="product-image">🥔</div>
+            <h3>Ігрова картоплина</h3>
+            <p>Працює зі швидкістю однієї картоплини.</p>
+            <p class="price">9999,99 грн</p>
+            <button class="addCart">ДОДАТИ ДО КОШИКА</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>ЧОМУ НАШ САЙТ ТАКИЙ НЕЗВИЧАЙНИЙ?</h2>
+        <p>
+          Ми вирішили використати всі кольори одночасно. А потім додали ще трохи
+          кольорів!
+        </p>
+        <button id="secretButton">НЕ НАТИСКАЙТЕ СЮДИ</button>
+      </section>
+
+      <section id="contact">
+        <h2>НАПИШІТЬ НАМ ЩОСЬ ЦІКАВЕ!</h2>
+        <input type="text" placeholder="Ваше ім'я" />
+        <input type="email" placeholder="Ваша електронна пошта" />
+        <textarea placeholder="Напишіть своє повідомлення..."></textarea>
+        <button id="sendMessage">НАДІСЛАТИ У КОСМОС</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 ДИВО-МАРКЕТ. УСІ ПРАВА ЗБЕРЕЖЕНО.</p>
+      <p>Створено з фантазією та надлишком кольорів!</p>
+    </footer>
+
+    <div id="popup" class="popup">
+      <button id="closePopup">ЗАКРИТИ ✖</button>
+      <h2>ВІТАЄМО!!! 🎉</h2>
+      <p>ВИ ОТРИМАЛИ УЯВНИЙ ПОДАРУНОК!</p>
+    </div>
+
+    <script>
+      const buyNow = document.getElementById("buyNow");
+      const changeBg = document.getElementById("changeBg");
+      const popup = document.getElementById("popup");
+      const visitorCount = document.getElementById("visitorCount");
+
+      const horribleColors = [
+        "lime",
+        "hotpink",
+        "yellow",
+        "cyan",
+        "orange",
+        "red",
+        "magenta",
+      ];
+
+      let cartCount = 0;
+
+      // Make the buy button extremely dramatic.
+      buyNow.addEventListener("click", () => {
+        alert(
+          "ERROR 404: MONEY NOT FOUND!!!\n" + "You bought absolutely nothing.",
+        );
+
+        document.body.style.background =
+          horribleColors[Math.floor(Math.random() * horribleColors.length)];
+      });
+
+      // Randomly ruin the entire website's background.
+      changeBg.addEventListener("click", () => {
+        document.body.style.background =
+          horribleColors[Math.floor(Math.random() * horribleColors.length)];
+
+        document.body.style.color =
+          horribleColors[Math.floor(Math.random() * horribleColors.length)];
+
+        document.querySelectorAll(".product").forEach((product) => {
+          product.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+
+          product.style.background =
+            horribleColors[Math.floor(Math.random() * horribleColors.length)];
+        });
+      });
+
+      // Every product button lies about the shopping experience.
+      document.querySelectorAll(".addCart").forEach((button) => {
+        button.addEventListener("click", () => {
+          cartCount++;
+
+          button.textContent = "YOU GOT SCAMMED!!!";
+
+          alert(
+            "ITEM ADDED TO IMAGINARY CART!!!\n" + "Items in cart: " + cartCount,
+          );
+        });
+      });
+
+      // The forbidden button does something ridiculous.
+      document.getElementById("secretButton").addEventListener("click", () => {
+        document.body.style.transform = "rotate(1deg)";
+
+        document.body.style.filter = "hue-rotate(180deg)";
+
+        alert("WHY DID YOU CLICK IT?!?!");
+
+        setTimeout(() => {
+          document.body.style.transform = "";
+          document.body.style.filter = "";
+        }, 1500);
+      });
+
+      // Contact form: completely useless but functional as a demo.
+      document.getElementById("sendMessage").addEventListener("click", () => {
+        alert(
+          "YOUR MESSAGE HAS BEEN SENT!!!\n" +
+            "To absolutely nobody. Congratulations.",
+        );
+      });
+
+      // Popup appears after a short delay.
+      setTimeout(() => {
+        popup.classList.add("show");
+      }, 5000);
+
+      document.getElementById("closePopup").addEventListener("click", () => {
+        popup.classList.remove("show");
+      });
+
+      // Fake visitor counter.
+      let visitors = 999999999;
+
+      setInterval(() => {
+        visitors += Math.floor(Math.random() * 100);
+
+        visitorCount.textContent = visitors.toLocaleString();
+      }, 1500);
+
+      // Randomly rotate headings because why not.
+      setInterval(() => {
+        const headings = document.querySelectorAll("h2");
+
+        headings.forEach((heading) => {
+          heading.style.transform = `rotate(${Math.random() * 12 - 6}deg)`;
+        });
+      }, 2000);
+    </script>
+  </body>
+</html>

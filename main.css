@@ -314,6 +314,17 @@ a {
     gap: 28px;
   }
 }
+/* 2 колонки: останній непарний проєкт на всю ширину */
+@media (min-width: 720px) and (max-width: 999px) {
+  .ex:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+@media (min-width: 1000px) {
+  .ex-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 .ex {
   display: flex;
   flex-direction: column;
